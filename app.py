@@ -12,7 +12,7 @@ scalar = pickle.load(open("scaling.pkl", "rb"))
 
 @app.route("/")
 def home():
-	return redirect("https://your-vercel-url.com")
+	return redirect("https://boston-house-prices-frontend.vercel.app/")
 
 @app.route("/predict_api", methods = ["POST"])
 def predict_api():
@@ -30,7 +30,7 @@ def predict():
 	final_input = scalar.transform(np.array(data).reshape(1, -1))
 	print(final_input)
 	output = regmodel.predict(final_input)[0]
-	return render_template("home.html", prediction_text = "The HOUSE PRICE prediction is {}".format(output))
+	return redirect(f"https://boston-house-prices-frontend.vercel.app/?prediction={output}")
 
 if __name__ == "__main__":
-	app.run(debug = True)
+	app.run()
