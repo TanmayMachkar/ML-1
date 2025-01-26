@@ -3,6 +3,7 @@ from flask import Flask, request, app, jsonify, url_for, render_template
 import numpy as np
 import pandas as pd
 from flask_cors import CORS
+from flask import redirect
 
 app = Flask(__name__)
 CORS(app)
@@ -11,7 +12,7 @@ scalar = pickle.load(open("scaling.pkl", "rb"))
 
 @app.route("/")
 def home():
-	return render_template("home.html")
+	return redirect("https://your-vercel-url.com")
 
 @app.route("/predict_api", methods = ["POST"])
 def predict_api():
