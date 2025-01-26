@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boston House Price Prediction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 50px 0; /* Added padding at the top */
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .login {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      backdrop-filter: blur(10px);
+    }
+
+    .login h1 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700; /* Changed font style for title */
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .login input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.8);
+      color: #333;
+    }
+
+    .login input[type="text"]:focus {
+      outline: none;
+      box-shadow: 0 0 5px #2575fc;
+    }
+
+    .login button {
+      background: #ff5f6d;
+      background: linear-gradient(45deg, #ff5f6d, #ffc371);
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login button:hover {
+      background: #ffc371;
+      background: linear-gradient(45deg, #ffc371, #ff5f6d);
+    }
+
+    .login button:active {
+      transform: scale(0.98);
+    }
+
+    .login form {
+      margin-top: 20px;
+    }
+
+    .login br {
+      display: none;
+    }
+
+    html {
+      background: linear-gradient(135deg, #6a11cb, #2575fc 90%, #1e1e2f); /* Added gradient extension */
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login">
+    <h1>Boston House Price Prediction</h1>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="text" name="CRIM" placeholder="CRIM" required="required" />
+      <input type="text" name="ZN" placeholder="ZN" required="required" />
+      <input type="text" name="INDUS" placeholder="INDUS" required="required" />
+      <input type="text" name="CHAS" placeholder="CHAS" required="required" />
+      <input type="text" name="NOX" placeholder="NOX" required="required" />
+      <input type="text" name="RM" placeholder="RM" required="required" />
+      <input type="text" name="Age" placeholder="Age" required="required" />
+      <input type="text" name="DIS" placeholder="DIS" required="required" />
+      <input type="text" name="RAD" placeholder="RAD" required="required" />
+      <input type="text" name="TAX" placeholder="TAX" required="required" />
+      <input type="text" name="PTRATIO" placeholder="PTRATIO" required="required" />
+      <input type="text" name="B" placeholder="B" required="required" />
+      <input type="text" name="LSTAT" placeholder="LSTAT" required="required" />
+
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    <br>
+    <br>
+
+    {{ prediction_text }}
+  </div>
+</body>
+
+</html>
