@@ -26,11 +26,14 @@ def predict_api():
 
 @app.route("/predict", methods = ["POST"])
 def predict():
-	data = [float(x) for x in request.form.values()] #convert to float
-	final_input = scalar.transform(np.array(data).reshape(1, -1))
-	print(final_input)
-	output = regmodel.predict(final_input)[0]
-	return redirect(f"https://boston-house-prices-frontend.vercel.app/?prediction={output}")
+    column_names = ['crim', 'zn', 'indus', 'chas', 'nox', 'rm', 'age', 'dis', 'rad', 'tax', 'ptratio', 'b', 'lstat']
+    data = request.json["data"]
+    print(data)
+    data_df = pd.DataFrame([data], columns=column_names)
+    new_data = scalar.transform(data_df)
+    print(new_data)
+    output = regmodel.predict(new_data)[0]
+    return jsonify({"prediction": output})
 
 if __name__ == "__main__":
-	app.run()
+	app.run(debug = True)
