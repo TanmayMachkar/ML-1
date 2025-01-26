@@ -95,7 +95,7 @@
     <h1>Boston House Price Prediction</h1>
 
     <!-- Main Input For Receiving Query to our ML -->
-    <form >
+    <form action="{{ url_for('predict') }}" method="post">
       <input type="text" name="CRIM" placeholder="CRIM" required="required" />
       <input type="text" name="ZN" placeholder="ZN" required="required" />
       <input type="text" name="INDUS" placeholder="INDUS" required="required" />
